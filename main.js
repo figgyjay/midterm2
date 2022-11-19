@@ -11,16 +11,15 @@ After summing the numbers, return the sum.
 You can assume that the 2nd number passed in will always be greater than the first and that the two numbers will not be the same
 Note: This problem should account for negative number input
 */
-let x = 2
-let n = 20
-function sumOfOdds(x, n){
+
+function sumOfOdds(num1, num2){
   let sum = 0
-    while(n <= x){
-      if(n % 2 == 1){
-        sum += n
+    for (let i = num1; i <= num2; i++){
+      if ( i % 2 !== 0){
+        sum = sum + 1;
       }
-      n += 1
     }
+    
     return sum
     }
 
@@ -66,20 +65,17 @@ Add the first string to the beginning of the array
 Add the second string to the end of the array
 Return the modified array
 */
-let arr1 = [87, 82, 84]
-let arr2 = "Heat"
-let arr3 = "wave"
 
-function surroundArray(arr1, arr2, arr3){
-arr1.push(arr2)
-arr1.unshift(arr3)
-return arr1
+function surroundArray(array, string1, string2){
+  array.unshift(string1);
+  array.push(string2);
+  return array;
+
 }
-
 
   
   /* console.logs to test */
-console.log(surroundArray(arr1, arr2, arr3));
+console.log(surroundArray([5,6,7], 'open', 'close' ));
 console.log("surroundArray");
 console.log("////////////////////////////////////////////////////////////////////////////\n");
 //Add console.logs here to test!  Feel free to format this section however you like
@@ -130,21 +126,29 @@ Write a function sToR that replaces every 's' character in the string with an 'r
 If the letter in the original string is uppercase the letter in the output string should be as well
 Do NOT use replaceAll or similar string methods.  If you are unsure what that means, ask before you use a string method!  (toUpperCase() and toLowerCase() should be all you need if anything)
 */
-let toReplace = "Javascript is the most popular language";
-let charToReplace = ['r','s'];
-let replaceWithChar = ['s','r'];
-newString = sToR(toReplace, charToReplace, replaceWithChar);
-console.log(newString);
 
-function sToR(toReplace, charToReplace, replaceWith)
-{
-    for (var i = 0; i < charToReplace.length; i++) {
-        toReplace = toReplace.replace(new RegExp(charToReplace[i]), replaceWith[i]);
-    }
-    return toReplace;
+
+function sToR(str){
+
+  let newStr = "";
+
+  for (let char of str){
+    if (char === "s"){
+        newStr += "r";
+    } else if (char === 'r'){
+      newStr += 's';
+    } else if (char === 'R'){
+      newStr += 'S';
+    } else if (newStr += 'S'){
+        newStr += 'R';
+      } else {
+        newStr += char;
+      }
+    return newStr;
+  }
 }
 
-console.log("sToR");
+console.log(sToR("receipts"));
 console.log("////////////////////////////////////////////////////////////////////////////\n");
 //Add console.logs here to test!  Feel free to format this section however you like
 
@@ -156,16 +160,17 @@ Write a function divisibleBy4And7 that takes in a number and returns true if it 
 If it is not, return false.
 */
 
-    let number = 267
-    let a = 4
-    let b = 7
 
-    function isDivideBy(number, a, b) {
-      return (number % a === 0) && (number % b === 0);
+    function divisibleBy4And7(num) {
+      if (num % 4 === 0 && num % 7 === 0){
+        return true
+      } else {
+        return false
+      }
     }
 
 /* console.logs to test */
-console.log("isDivideBy");
+console.log(divisibleBy4And7(65));
 console.log("////////////////////////////////////////////////////////////////////////////\n");
 //Add console.logs here to test!  Feel free to format this section however you like
 
@@ -178,22 +183,29 @@ return true if the string contains both an exclamation point (!) AND a question 
 Return false if otherwise
 */
 
-  let string1 = "Hey! Did you know my papa was a rolling stone?";
+  //"Hey! Did you know my papa was a rolling stone?"
 
-  function exclamationAndQuestion(string1){
-  let arr = string.split("");
-  let index = arr.indexOf("?");
-  let index2 = arr.indexOf('!');
-  let result = arr.join("");
-  if (index !== -1) {answer = "False"}
-  else {answer = "True"}
-  if (index2 !== -1) {answer = "False"}
-  else {answer = "True"}
-
-  return answer
+  function exclamationAndQuestion(string){
+    let xman = 0
+    let yman = 0
+    
+    for ( i = 0; i < string.length; i++){
+      if(string[i] === '!'){
+        xman += 1
+      }
+      if (string[i] === "?"){
+      yman += 1;
+      }
+    }
+    if (xman > 0 && yman > 0){
+      return true;
+    } else {
+      return false
+    }
 } 
 
-console.log(exclamationAndQuestion(string1));
+console.log(exclamationAndQuestion("Hey! Did you know my papa was a rolling stone?"
+));
 
 /* console.logs to test */
 console.log("exclamationAndQuestion");
@@ -210,49 +222,33 @@ Your function should account for both cases (upper and lower) of each letter.
 */
 
 
-let str = "I want to count the number of occurrences of each char in this string";
-function countAB( str )
-{
-  if( str.length == 0 )
-  {
-    console.log("Invalid string")
-    return;
-  }
+function countAB( str ){
+
+  let  array = [];
+  let aNum = 0
+  let bNum = 0
 
   for( let i = 0 ;i < str.length ;i++)
   {
-    //variable counting occurrence
-    let count = 0;
-    for( let A = 0 ; A < str.length ;A++)
-    {
-      if( str[i] == str[A] && i > A  )
+      if( str[i] === 'a' || str[i] === 'A')
       {
-       break;
+      aNum += 1;
       }
-      if( str[i] == str[A]  )
+      if( str[i] === 'b' || str[i] === 'B')
       {
-        count++;
+      bNum += 1;
       }
     }
-    for( let B = 0 ; A < str.length ;B++)
-    {
-      if( str[i] == str[B] && i > B  )
-      {
-       break;
-      }
-      if( str[i] == str[B]  )
-      {
-        count++;
-      }
+      
+      array.push(aNum);
+      array.push(bNum);
+      return array;
     }
-    if( count > 0)
-    console.log(`${str[i]} occurs ${count} times`);
-     
-  }
-}
 
 
-console.log("countAB");
+console.log(countAB("abracadabra"));
+console.log(countAB("bumblebar123"));
+console.log(countAB("abbadabbadoo"));
 console.log("////////////////////////////////////////////////////////////////////////////\n");
 //Add console.logs here to test!  Feel free to format this section however you like
 
